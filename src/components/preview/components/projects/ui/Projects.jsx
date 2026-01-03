@@ -74,6 +74,8 @@ const Projects = () => {
                         {typeof item.keyAchievements === "string" &&
                           item.keyAchievements
                             .split("\n")
+                            .map((ach) => ach.trim())
+                            .filter((ach) => ach.length > 0)
                             .map((achievement, subIndex) => (
                               <Draggable
                                 key={`${item.name}-${index}-${subIndex}`}
