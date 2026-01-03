@@ -2,6 +2,7 @@ import Skills from "../components/Skills";
 import DateRange from "../../utility/DateRange";
 import Language from "../components/Language";
 import Certification from "../components/Certification";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const Droppable = dynamic(
@@ -78,6 +79,55 @@ const LeftSide = ({ resumeData }) => {
         title="Certifications"
         certifications={resumeData.certifications}
       />
+
+      {resumeData.communityProjects &&
+        resumeData.communityProjects.length > 0 && (
+          <div className="mb-1">
+            <h2 className="section-title mb-1 border-b-2 border-gray-300">
+              Community Projects
+            </h2>
+            {resumeData.communityProjects.map((item, index) => (
+              <div key={index} className="mb-1">
+                <div className="flex flex-row justify-between space-y-1">
+                  <p className="content i-bold">{item.name}</p>
+                  <DateRange
+                    startYear={item.startYear}
+                    endYear={item.endYear}
+                    id={`community-projects-start-end-date-${index}`}
+                  />
+                </div>
+
+                {item.link && (
+                  <Link
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="content"
+                  >
+                    {item.link}
+                  </Link>
+                )}
+
+                {item.description && (
+                  <p className="sub-content">{item.description}</p>
+                )}
+
+                {typeof item.keyAchievements === "string" &&
+                  item.keyAchievements.split("\n").length > 0 && (
+                    <ul className="list-disc ul-padding content">
+                      {item.keyAchievements.split("\n").map((ach, idx) => (
+                        <li
+                          key={idx}
+                          className="sub-content"
+                          dangerouslySetInnerHTML={{ __html: ach }}
+                        />
+                      ))}
+                    </ul>
+                  )}
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 };

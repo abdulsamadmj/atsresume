@@ -55,6 +55,7 @@ const DefaultResumeData = {
     }
   ],
   projects: [],
+  communityProjects: [],
   skills: [
     {
       title: "Technical Skills",
