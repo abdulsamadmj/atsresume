@@ -1,6 +1,6 @@
 const DateRange = ({startYear, endYear, id}) => {
   // TODO make as an app param
-  const lang = 'en-Us' // 'default'
+  const lang = 'en-US' // 'default'
 
   if (!startYear) {
     return <p id={id} className="sub-content"></p>;
@@ -8,16 +8,19 @@ const DateRange = ({startYear, endYear, id}) => {
 
   const start = new Date(startYear);
   const startStr = `${start.toLocaleString(lang, {month: 'short'})} ${start.getFullYear()}`
-  const end = new Date(endYear);
-  let endStr = 'Present'
 
-  if (end != "Invalid Date") {
+  let end = endYear ? new Date(endYear) : null;
+  let endStr = 'Present'
+  let sameMonth = false
+
+  if (end && !isNaN(end.getTime())) {
     endStr = `${end.toLocaleString(lang, {month: 'short'})} ${end.getFullYear()}`
+    sameMonth = start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()
   }
 
   return (
     <p id={id} className="sub-content">
-      {startStr} — {endStr}
+      {sameMonth ? startStr : `${startStr} — ${endStr}`}
     </p>
   );
 };
