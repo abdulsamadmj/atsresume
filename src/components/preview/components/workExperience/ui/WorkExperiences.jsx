@@ -26,6 +26,7 @@ const WorkExperiences = () => {
             <WorkExperience
               key={index}
               item={item}
+              index={index}
             />
           ))}
           {provided.placeholder}
