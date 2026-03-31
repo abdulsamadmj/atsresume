@@ -1,17 +1,8 @@
 import React, {useContext} from 'react';
 import DateRange from "../../../../utility/DateRange";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import { Draggable, Droppable } from "@hello-pangea/dnd";
 import {ResumeContext} from "../../../../builder";
-
-const Droppable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Droppable),
-  {ssr: false}
-);
-const Draggable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Draggable),
-  {ssr: false}
-);
 
 const Projects = () => {
   const {resumeData} = useContext(ResumeContext);

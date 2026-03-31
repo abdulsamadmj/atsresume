@@ -3,16 +3,7 @@ import DateRange from "../../utility/DateRange";
 import Language from "../components/Language";
 import Certification from "../components/Certification";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-const Droppable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Droppable),
-  { ssr: false }
-);
-const Draggable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Draggable),
-  { ssr: false }
-);
+import { Draggable, Droppable } from "@hello-pangea/dnd";
 
 const LeftSide = ({ resumeData }) => {
   return (
